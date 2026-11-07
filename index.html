@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>HAC 学者、期刊与经典方法</title>
+<style>
+  :root{
+    --navy:#003570; --navy-2:#0B4A8F; --red:#F03A17; --ink:#23323F;
+    --muted:#7C8B9B; --card:#FFFFFF; --bg:#F4F7FB; --line:#DEE7F1;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:"Microsoft YaHei","微软雅黑",-apple-system,Segoe UI,Arial,sans-serif;}
+  header{background:linear-gradient(135deg,#003570 0%,#0B4A8F 100%);color:#fff;
+         padding:26px 40px 24px;}
+  header .tag{font:700 11px/1 Arial;letter-spacing:.2em;opacity:.7}
+  header h1{margin:10px 0 0;font-size:25px;letter-spacing:.02em}
+
+  .tabs{display:flex;gap:28px;padding:0 40px;background:#fff;border-bottom:1px solid var(--line);
+        position:sticky;top:0;z-index:30;box-shadow:0 1px 6px rgba(0,53,112,.05)}
+  .tabs button{appearance:none;background:none;border:none;cursor:pointer;
+        padding:13px 2px 11px;font-size:13.5px;color:#5B6B7C;font-family:inherit;
+        border-bottom:2px solid transparent;margin-bottom:-1px}
+  .tabs button:hover{color:var(--navy)}
+  .tabs button.on{color:var(--navy);font-weight:700;border-bottom-color:var(--red)}
+  .tabs .right{margin-left:auto;align-self:center;font-size:11.5px;color:var(--muted)}
+
+  .wrap{max-width:1340px;margin:0 auto;padding:8px 40px 48px}
+  .page{display:none}
+  .page.on{display:block}
+
+  /* ---------- 学者 ---------- */
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+       padding:20px 0 18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+  .bar .hint{font-size:11.5px;color:var(--muted);margin-right:6px}
+  .pill{border:1px solid var(--line);background:#fff;color:#4A5A6A;border-radius:999px;
+        padding:6px 13px;font-size:12px;cursor:pointer;transition:.15s;white-space:nowrap;
+        font-family:inherit}
+  .pill:hover{border-color:#B9C9DC;color:var(--navy)}
+  .pill.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+        padding:15px 16px 13px;display:flex;flex-direction:column;
+        box-shadow:0 1px 2px rgba(0,53,112,.05);transition:.16s;position:relative;overflow:hidden}
+  .card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--navy);
+               opacity:.85;transition:.16s}
+  .card[data-tag="信任与采纳"]:before{background:var(--red)}
+  .card[data-tag="人机团队与交互"]:before{background:#2E8BA8}
+  .card[data-tag="认知·解释·组织"]:before{background:#6B7FA8}
+  .card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,53,112,.13)}
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .name{font-size:16.5px;font-weight:700;color:var(--navy);line-height:1.3}
+  .chip{font-size:10.5px;line-height:1;padding:5px 8px;border-radius:999px;
+        background:#EDF3FA;color:#41546B;white-space:nowrap;font-weight:700}
+  .card[data-tag="信任与采纳"] .chip{background:#FDEEE9;color:#B9381A}
+  .card[data-tag="人机团队与交互"] .chip{background:#E7F3F7;color:#1F6B82}
+  .card[data-tag="认知·解释·组织"] .chip{background:#EEF0F7;color:#4C5D85}
+  .field{font-size:11.5px;color:var(--muted);margin:3px 0 8px;letter-spacing:.01em}
+  .why{font-size:12.8px;line-height:1.68;color:#3B4A59;flex:1}
+  .why b{color:var(--navy)}
+  .links{margin-top:11px;display:flex;gap:14px;align-items:center}
+
+  /* ---------- 期刊 ---------- */
+  h2.sec{font-size:15px;color:var(--navy);margin:26px 0 12px;letter-spacing:.02em}
+  h2.sec small{display:block;font:400 11.5px/1.7 Arial;color:var(--muted);letter-spacing:.02em;margin-top:4px}
+  .jgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:16px}
+  .jcard{background:var(--card);border:1px solid var(--line);border-radius:10px;
+         padding:15px 18px 14px;position:relative;overflow:hidden;
+         box-shadow:0 1px 2px rgba(0,53,112,.05);transition:.16s}
+  .jcard:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,53,112,.13)}
+  .jcard:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#C0392B}
+  .jcard[data-tier="FT50"]:before{background:#D2573E}
+  .jcard[data-tier="ABS4"]:before{background:#E39A57}
+  .jcard[data-tier="ABS3"]:before{background:#5B87B8}
+  .jtop{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .jname{font-size:17px;font-weight:700;color:var(--navy);line-height:1.3}
+  .jfull{font-size:11.5px;color:var(--muted)}
+  .tier{font-size:10.5px;line-height:1;padding:5px 8px;border-radius:999px;
+        background:#C0392B;color:#fff;font-weight:700;white-space:nowrap;letter-spacing:.02em}
+  .jcard[data-tier="FT50"] .tier{background:#D2573E;color:#fff}
+  .jcard[data-tier="ABS4"] .tier{background:#FBEBD8;color:#8A4E12}
+  .jcard[data-tier="ABS3"] .tier{background:#DCEAF7;color:#1F4E79}
+  .stars{margin-left:auto;font-size:12px;letter-spacing:2px;color:var(--red);white-space:nowrap}
+  .stars i{color:#D7DEE7;font-style:normal}
+  .jdesc{font-size:13px;line-height:1.7;color:#3B4A59;margin:8px 0 10px}
+  .jlinks{display:flex;gap:16px;align-items:center;font-size:11.5px}
+  .jlinks a{color:var(--red);text-decoration:none;font-weight:700;font-family:Arial,sans-serif;
+            letter-spacing:.03em}
+  .jlinks a:hover{text-decoration:underline}
+
+  /* ---------- 经典方法 ---------- */
+  .mcard{background:var(--card);border:1px solid var(--line);border-radius:10px;
+         padding:15px 16px 13px;position:relative;overflow:hidden;
+         box-shadow:0 1px 2px rgba(0,53,112,.05);transition:.16s;
+         display:flex;flex-direction:column}
+  .mcard:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+                background:#2E8BA8;opacity:.9}
+  .mcard[data-kind="教材"]:before{background:#6B7FA8}
+  .mcard:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,53,112,.13)}
+  .mtop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .mname{font-size:16px;font-weight:700;color:var(--navy);line-height:1.35}
+  .mchip{font-size:10.5px;line-height:1;padding:5px 8px;border-radius:999px;
+         background:#E7F3F7;color:#1F6B82;white-space:nowrap;font-weight:700}
+  .mcard[data-kind="教材"] .mchip{background:#EEF0F7;color:#4C5D85}
+  .mfield{font-size:11.5px;color:var(--muted);margin:4px 0 8px}
+  .mdesc{font-size:12.8px;line-height:1.66;color:#3B4A59;flex:1}
+  .mlinks{margin-top:11px}
+
+  /* ---------- 编辑表 ---------- */
+  table{border-collapse:collapse;width:100%;background:#fff;font-size:12.5px}
+  .tblwrap{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#F7FAFD;color:#41546B;font-size:11.5px;font-weight:700;letter-spacing:.02em}
+  tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:700;color:var(--navy);white-space:nowrap}
+  td b{color:var(--navy)}
+  td .aff{display:block;font-size:11px;color:var(--muted);font-weight:400;margin-top:2px}
+
+  a.sch{font:700 11.5px/1 Arial;color:var(--red);text-decoration:none;letter-spacing:.03em}
+  a.sch:hover{text-decoration:underline}
+  a.alt{font:400 11.5px/1 Arial;color:var(--muted);text-decoration:none}
+  a.alt:hover{color:var(--navy);text-decoration:underline}
+  footer{max-width:1340px;margin:0 auto;padding:0 40px 40px;font-size:11px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <div class="tag">HUMAN&ndash;AI COLLABORATION</div>
+  <h1>HAC 学者、期刊与经典方法</h1>
+</header>
+
+<div class="tabs">
+  <button class="on" data-page="scholars">学者</button>
+  <button data-page="journals">期刊与编辑</button>
+  <button data-page="methods">经典方法</button>
+  <span class="right">整理于 2026-11</span>
+</div>
+
+<div class="wrap">
+
+<!-- ============ 页面一：学者 ============ -->
+<div class="page on" id="page-scholars">
+  <div class="bar">
+    <span class="hint">按主题看：</span>
+    <button class="pill on" data-tag="all">全部</button>
+    <button class="pill" data-tag="委派与建议">委派与建议</button>
+    <button class="pill" data-tag="信任与采纳">信任与采纳</button>
+    <button class="pill" data-tag="人机团队与交互">人机团队与交互</button>
+    <button class="pill" data-tag="认知·解释·组织">认知·解释·组织</button>
+  </div>
+
+  <div class="grid">
+
+    <div class="card" data-tag="委派与建议">
+      <div class="top"><div class="name">Andreas Fügener</div><span class="chip">委派与建议</span></div>
+      <div class="field">决策科学 · 人机混合智能</div>
+      <div class="why">研究人机分工的边界：哪些判断该交给算法、交多少，以及人在什么条件下会真的放手。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=5B4uBG8AAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="委派与建议">
+      <div class="top"><div class="name">Patrick Hemmer</div><span class="chip">委派与建议</span></div>
+      <div class="field">信息系统 · 人机委派</div>
+      <div class="why">《Cognitive Challenges in Human&ndash;AI Collaboration》一作：AI 建议如何改变人的判断质量，以及委派行为怎么发生。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=7gf5nyYAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="委派与建议">
+      <div class="top"><div class="name">Michael V&ouml;ssing</div><span class="chip">委派与建议</span></div>
+      <div class="field">信息系统 · 企业人机协作</div>
+      <div class="why">把 AI 助手做进真实业务流程（服务、知识工作）的设计与评估，偏落地与部署。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=AgqMr_QAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="委派与建议">
+      <div class="top"><div class="name">Yingjie Zhang</div><span class="chip">委派与建议</span></div>
+      <div class="field">信息系统 · 人机互补</div>
+      <div class="why">《1+1&gt;2? Information, Humans, and Machines》合作者，做人与机器在信息处理上的<b>互补与替代</b>。</div>
+      <div class="links">
+        <a class="sch" href="https://scholar.google.com/citations?user=EtXFFnQAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a>
+        <a class="alt" href="https://sites.google.com/view/yingjiezhang" target="_blank">个人主页 &#8599;</a>
+      </div>
+    </div>
+
+    <div class="card" data-tag="信任与采纳">
+      <div class="top"><div class="name">Berkeley J. Dietvorst</div><span class="chip">信任与采纳</span></div>
+      <div class="field">行为决策 · 算法厌恶</div>
+      <div class="why">算法厌恶的奠基研究：人对算法的信任为何如此脆弱，<b>一次失误之后能否修复</b>。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=u004yBYAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="信任与采纳">
+      <div class="top"><div class="name">Jennifer M. Logg</div><span class="chip">信任与采纳</span></div>
+      <div class="field">行为决策 · 算法欣赏</div>
+      <div class="why">「Theory of machine」：算法欣赏与厌恶的<b>边界条件</b>，和 Dietvorst 正好互补。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=apjXpMkAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="信任与采纳">
+      <div class="top"><div class="name">Alexander Benlian</div><span class="chip">信任与采纳</span></div>
+      <div class="field">信息系统 · 信任与采纳</div>
+      <div class="why">IS 顶刊里的信任、算法厌恶与 <b>AI 建议采纳</b>实证，偏测量与机制。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=_X39PbsAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="人机团队与交互">
+      <div class="top"><div class="name">Q. Vera Liao</div><span class="chip">人机团队与交互</span></div>
+      <div class="field">人机交互 · 解释与协作</div>
+      <div class="why">人机协作中的<b>解释</b>、AI 作为队友的设计与评估，写框架和综述时绕不开。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=bbe_MZEAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="人机团队与交互">
+      <div class="top"><div class="name">Zana Bu&#231;inca</div><span class="chip">人机团队与交互</span></div>
+      <div class="field">人机交互 · 算法依赖</div>
+      <div class="why">认知强制（cognitive forcing）与解释如何<b>减少对 AI 的过度依赖</b>，主张 worker-centric AI。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=Q_RQYDgAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="人机团队与交互">
+      <div class="top"><div class="name">X. Jessie Yang</div><span class="chip">人机团队与交互</span></div>
+      <div class="field">人因工程 · 信任校准</div>
+      <div class="why">自动驾驶、机器人与决策辅助场景下的<b>信任校准</b>与解释设计。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=_JCq7nIAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="人机团队与交互">
+      <div class="top"><div class="name">Kori Inkpen</div><span class="chip">人机团队与交互</span></div>
+      <div class="field">CSCW · 人机沟通</div>
+      <div class="why">从协作技术视角看 AI 如何介入人与人、人与系统的<b>沟通与共同工作</b>。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=9aA5QTUAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="人机团队与交互">
+      <div class="top"><div class="name">Matthias S&ouml;llner</div><span class="chip">人机团队与交互</span></div>
+      <div class="field">信息系统 · 混合智能</div>
+      <div class="why">研究可信的混合智能系统：AI 助手如何与人分工协作、解释与信任如何建立；其实证集中在<b>学习与培训场景</b>，较少涉及商业决策。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=9gD2bNwAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="认知·解释·组织">
+      <div class="top"><div class="name">Cleotilde Gonzalez</div><span class="chip">认知·解释·组织</span></div>
+      <div class="field">认知科学 · 动态决策</div>
+      <div class="why">动态决策与经验学习理论：人如何从<b>反馈中累积经验</b>、更新判断与策略选择。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=KgU6Vg8AAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="认知·解释·组织">
+      <div class="top"><div class="name">Alon Jacovi</div><span class="chip">认知·解释·组织</span></div>
+      <div class="field">可解释性 · 人机协作</div>
+      <div class="why">解释在多大程度上<b>真的帮助协作</b>，以及怎样评估它才算数。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=cX9TtloAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="认知·解释·组织">
+      <div class="top"><div class="name">Paul Leonardi</div><span class="chip">认知·解释·组织</span></div>
+      <div class="field">组织研究 · 知识工作</div>
+      <div class="why">组织中的知识流动与沟通结构：数字技术如何改变<b>谁知道什么</b>，以及跨部门协作的方式。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=7GfnCOcAAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+    <div class="card" data-tag="认知·解释·组织">
+      <div class="top"><div class="name">Inbal Yahav</div><span class="chip">认知·解释·组织</span></div>
+      <div class="field">信息系统 · 人机互学习</div>
+      <div class="why">提出「人机互学习（RHML）」理论（Management Science）：人与算法如何互为老师、在往复中提升判断；近年转向<b>众包与 LLM 的混合质量控制</b>。</div>
+      <div class="links"><a class="sch" href="https://scholar.google.com/citations?user=avjLJ58AAAAJ&hl=zh-CN" target="_blank">Google Scholar &#8599;</a></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ 页面二：期刊与编辑 ============ -->
+<div class="page" id="page-journals">
+
+  <h2 class="sec">目标期刊</h2>
+  <div class="jgrid">
+
+    <div class="jcard" data-tier="UTD24">
+      <div class="jtop"><span class="jname">MISQ</span><span class="tier">UTD24 &middot; FT50</span></div>
+      <div class="jfull">Management Information Systems Quarterly</div>
+      <div class="jdesc">IS 顶级理论与实证，重理论贡献与新概念；委派/协同框架（Appraisal&ndash;Distribution&ndash;Coordination）就发在这里。</div>
+      <div class="jlinks"><a href="https://misq.umn.edu/" target="_blank">官网 &#8599;</a></div>
+    </div>
+
+    <div class="jcard" data-tier="UTD24">
+      <div class="jtop"><span class="jname">ISR</span><span class="tier">UTD24 &middot; FT50</span></div>
+      <div class="jfull">Information Systems Research</div>
+      <div class="jdesc">IS 定量实证、分析建模与设计科学；人机协作实证的主战场之一。</div>
+      <div class="jlinks"><a href="https://pubsonline.informs.org/journal/isre" target="_blank">官网 &#8599;</a></div>
+    </div>
+
+    <div class="jcard" data-tier="UTD24">
+      <div class="jtop"><span class="jname">MS</span><span class="tier">UTD24 &middot; FT50</span></div>
+      <div class="jfull">Management Science</div>
+      <div class="jdesc">管理科学全领域；IS 方向收算法决策、平台与 AI 经济，行为实验类 HAC 研究常见。</div>
+      <div class="jlinks"><a href="https://pubsonline.informs.org/journal/mnsc" target="_blank">官网 &#8599;</a></div>
+    </div>
+
+    <div class="jcard" data-tier="UTD24">
+      <div class="jtop"><span class="jname">AMR</span><span class="tier">UTD24 &middot; FT50</span></div>
+      <div class="jfull">Academy of Management Review</div>
+      <div class="jdesc">纯理论刊物，以概念、框架与理论建构为主。</div>
+      <div class="jlinks"><a href="https://journals.aom.org/journal/amr" target="_blank">官网 &#8599;</a></div>
+    </div>
+
+    <div class="jcard" data-tier="FT50">
+      <div class="jtop"><span class="jname">JMIS</span><span class="tier">FT50</span></div>
+      <div class="jfull">Journal of Management Information Systems</div>
+      <div class="jdesc">IS 的应用与管理问题，偏落地与组织情境。</div>
+      <div class="jlinks"><a href="https://www.jmis-web.org/" target="_blank">官网 &#8599;</a></div>
+    </div>
+
+    <div class="jcard" data-tier="FT50">
+      <div class="jtop"><span class="jname">JMS</span><span class="tier">FT50</span></div>
+      <div class="jfull">Journal of Management Studies</div>
+      <div class="jdesc">管理与组织研究，收 AI 与工作 / 组织专题；适合组织视角的 HAC。</div>
+      <div class="jlinks"><a href="https://onlinelibrary.wiley.com/journal/14676486" target="_blank">官网 &#8599;</a></div>
+    </div>
+
+    <div class="jcard" data-tier="ABS4">
+      <div class="jtop"><span class="jname">EJIS</span><span class="tier">ABS4</span></div>
+      <div class="jfull">European Journal of Information Systems</div>
+      <div class="jdesc">欧洲 IS 社区，偏社会技术与设计科学。</div>
+      <div class="jlinks"><a href="https://www.tandfonline.com/journals/tjis20" target="_blank">官网 &#8599;</a></div>
+    </div>
+
+    <div class="jcard" data-tier="ABS4">
+      <div class="jtop"><span class="jname">Risk Analysis</span><span class="tier">ABS4</span></div>
+      <div class="jfull">Society for Risk Analysis</div>
+      <div class="jdesc">风险分析、风险沟通与决策；算法风险与信任的交叉口。</div>
+      <div class="jlinks"><a href="https://onlinelibrary.wiley.com/journal/15396924" target="_blank">官网 &#8599;</a></div>
+    </div>
+
+    <div class="jcard" data-tier="ABS3">
+      <div class="jtop"><span class="jname">Decision Sciences</span><span class="tier">ABS3</span></div>
+      <div class="jfull">Decision Sciences Institute</div>
+      <div class="jdesc">决策科学、运营与 IS 的交叉，偏方法与模型；近年征 agentic AI 与人机协作专刊。</div>
+      <div class="jlinks"><a href="https://onlinelibrary.wiley.com/journal/15405915" target="_blank">官网 &#8599;</a></div>
+    </div>
+
+    <div class="jcard" data-tier="ABS3">
+      <div class="jtop"><span class="jname">DSS</span><span class="tier">ABS3</span></div>
+      <div class="jfull">Decision Support Systems</div>
+      <div class="jdesc">决策支持系统与技术实现；AI 建议 / 决策支持的天然主场。</div>
+      <div class="jlinks"><a href="https://www.sciencedirect.com/journal/decision-support-systems" target="_blank">官网 &#8599;</a></div>
+    </div>
+
+  </div>
+
+  <h2 class="sec">各刊人机协同方向编辑名录</h2>
+  <div class="tblwrap">
+    <table>
+      <thead>
+        <tr><th style="width:10%">期刊</th><th style="width:26%">编辑</th><th style="width:20%">角色</th><th style="width:34%">方向</th><th>Scholar</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2" title="MIS Quarterly">MISQ</td>
+          <td><b>Maytal Saar-Tsechansky</b><span class="aff">UT Austin</span></td>
+          <td>Senior Editor</td>
+          <td>machine learning; AI advice; <b>human-AI teams</b></td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=SUAbOcgAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+        <tr>
+          <td><b>Yingjie Zhang</b><span class="aff">Peking University</span></td>
+          <td>Associate Editor</td>
+          <td><b>human-AI interaction</b>; economic impacts of new technologies</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=EtXFFnQAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+
+        <tr>
+          <td rowspan="4" title="Information Systems Research">ISR</td>
+          <td><b>Ting Li</b><span class="aff">Erasmus University</span></td>
+          <td>Associate Editor</td>
+          <td><b>human-AI collaboration</b>; AI and human judgement; platform economics</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=ArG3_4wAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+        <tr>
+          <td><b>Kevin Bauer</b><span class="aff">Goethe University Frankfurt</span></td>
+          <td>Editorial Review Board</td>
+          <td><b>explainable AI and metacognition</b>; GenAI disclosure and creative collaboration</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=Em0htmUAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+        <tr>
+          <td><b>Marta Stelmaszak</b><span class="aff">University of Massachusetts Amherst</span></td>
+          <td>Editorial Review Board</td>
+          <td><b>algorithmic delegation</b>; algorithmic management; qualitative methods</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=At0X3c0AAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+        <tr>
+          <td><b>Ekaterina Jussupow</b><span class="aff">Technical University of Darmstadt</span></td>
+          <td>Editorial Review Board</td>
+          <td><b>AI teammates</b>; explainable AI; GenAI and human decision quality</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=R-mYLLIAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+
+
+        <tr>
+          <td title="Management Science">MS</td>
+          <td><b>Param Vir Singh</b><span class="aff">Carnegie Mellon University</span></td>
+          <td>Associate Editor &middot; IS</td>
+          <td><b>human-AI learning</b>; algorithmic decision-making; generative AI and IS research</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=Qk3bTAYAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+
+        <tr>
+          <td rowspan="2" title="Academy of Management Review">AMR</td>
+          <td><b>Sebastian Raisch</b><span class="aff">University of Geneva</span></td>
+          <td>Editorial Review Board</td>
+          <td><b>hybrid human-AI problem-solving</b>; automation&ndash;augmentation paradox</td>
+          <td><a class="sch" href="https://scholar.google.com/scholar?q=%22Sebastian+Raisch%22&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+        <tr>
+          <td><b>Gudela Grote</b><span class="aff">ETH Z&uuml;rich</span></td>
+          <td>Editorial Review Board</td>
+          <td><b>human&ndash;AI teamwork</b>; work design; organizational psychology</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=3Xg0rEwAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+
+        <tr>
+          <td rowspan="3" title="Journal of Management Information Systems">JMIS</td>
+          <td><b>Oliver Hinz</b><span class="aff">Goethe University Frankfurt</span></td>
+          <td>Board of Editors</td>
+          <td><b>human-AI collaboration</b>; explainable AI and metacognition; generative AI disclosure</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=5HYKgr4AAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+        <tr>
+          <td><b>Yuqing Ren</b><span class="aff">University of Minnesota</span></td>
+          <td>Board of Editors</td>
+          <td><b>human-AI collaboration modes</b>; AI-augmented team decisions; collective intelligence</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=pO-wy6QAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+        <tr>
+          <td><b>Jan Marco Leimeister</b><span class="aff">University of St. Gallen</span></td>
+          <td>Editor</td>
+          <td><b>hybrid intelligence</b>; agentic AI; human&ndash;AI interaction design; GenAI-enabled delegation</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=1mnRxdEAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+
+        <tr>
+          <td>JMS</td>
+          <td><b>James Faulconbridge</b><span class="aff">Lancaster University</span></td>
+          <td>Editorial Review Board</td>
+          <td>AI and professional work; <b>automation&ndash;augmentation</b>; boundary work</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=mpowQZoAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+
+        <tr>
+          <td rowspan="3" title="European Journal of Information Systems">EJIS</td>
+          <td><b>Sirkka Jarvenpaa</b><span class="aff">UT Austin</span></td>
+          <td>Senior Editor (2024 archive)</td>
+          <td><b>human&ndash;generative AI collaboration</b>; algorithmic decision making; trust in AI</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=0tjBRy8AAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+        <tr>
+          <td><b>Alexander Benlian</b><span class="aff">TU Darmstadt</span></td>
+          <td>Senior Editor (2024 archive)</td>
+          <td><b>human-AI collaboration</b>; algorithmic management; generative AI at work</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=_X39PbsAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+        <tr>
+          <td><b>Matthias S&ouml;llner</b><span class="aff">University of Kassel</span></td>
+          <td>Senior Editor (2025&ndash;)</td>
+          <td><b>trust in AI</b>; hybrid intelligence; human&ndash;AI collaboration</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=9gD2bNwAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+
+        <tr>
+          <td title="Decision Sciences">DS</td>
+          <td><b>Inbal Yahav</b><span class="aff">Tel Aviv University</span></td>
+          <td>Editorial Review Board</td>
+          <td><b>human&ndash;machine reciprocal learning</b>; human&ndash;AI collaboration theory; crowd and LLM quality control</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=avjLJ58AAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+
+        <tr>
+          <td title="Decision Support Systems">DSS</td>
+          <td><b>One-Ki Daniel Lee</b><span class="aff">Virginia Commonwealth University</span></td>
+          <td>Associate Editor</td>
+          <td><b>human&ndash;AI interaction</b>; XAI; AI affordances; delegation in human&ndash;agentic AI</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=_XdBpsQAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+        <tr>
+          <td title="Risk Analysis">RA</td>
+          <td><b>Emanuele Borgonovo</b><span class="aff">Bocconi University</span></td>
+          <td>Area Editor &middot; Decision &amp; Management Science</td>
+          <td><b>AI for risk analysis and risks of AI</b>; explainable AI; decision analysis</td>
+          <td><a class="sch" href="https://scholar.google.com/citations?user=S210UlUAAAAJ&hl=zh-CN" target="_blank">Scholar &#8599;</a></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============ 页面三：经典方法 ============ -->
+<div class="page" id="page-methods">
+
+  <h2 class="sec">经典方法<small>建议顺序：先因果推理，再强化学习的数学原理，最后深度强化学习</small></h2>
+  <div class="grid">
+
+    <div class="mcard" data-kind="课程">
+      <div class="mtop"><div class="mname">《因果推理导论》课程（2020）</div><span class="mchip">课程</span></div>
+      <div class="mfield">因果推断 · Brady Neal</div>
+      <div class="mdesc">从关联讲到干预，因果图与 do 演算讲得清楚，入门优先。</div>
+      <div class="mlinks"><a class="sch" href="https://www.bilibili.com/video/BV1nZ4y1K78i/?spm_id_from=333.1387.favlist.content.click&amp;vd_source=dd8c34b43525ca3ec55f92cdd321e6c4" target="_blank">B 站视频 &#8599;</a></div>
+    </div>
+
+    <div class="mcard" data-kind="课程">
+      <div class="mtop"><div class="mname">强化学习的数学原理</div><span class="mchip">课程</span></div>
+      <div class="mfield">强化学习 · 课程</div>
+      <div class="mdesc">从贝尔曼方程推起，把 MDP、值迭代与策略梯度的推导补齐。</div>
+      <div class="mlinks"><a class="sch" href="https://www.bilibili.com/video/BV1sd4y167NS/?spm_id_from=333.1387.favlist.content.click" target="_blank">B 站视频 &#8599;</a></div>
+    </div>
+
+    <div class="mcard" data-kind="课程">
+      <div class="mtop"><div class="mname">深度强化学习（伯克利）</div><span class="mchip">课程</span></div>
+      <div class="mfield">深度强化学习 · 课程</div>
+      <div class="mdesc">伯克利的深度强化学习课，接上一门看，从理论走向实现。</div>
+      <div class="mlinks"><a class="sch" href="https://www.bilibili.com/video/BV1jpK86hE52/?spm_id_from=333.788.videopod.episodes&amp;vd_source=dd8c34b43525ca3ec55f92cdd321e6c4&amp;p=6" target="_blank">B 站视频 &#8599;</a></div>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<footer>整理于 2026-11 &middot; 供文献梳理与投稿参考</footer>
+
+<script>
+  var tabs = document.querySelectorAll('.tabs button');
+  var pages = { scholars: document.getElementById('page-scholars'),
+                journals: document.getElementById('page-journals'),
+                methods: document.getElementById('page-methods') };
+
+  function show(name, push) {
+    Object.keys(pages).forEach(function (k) {
+      pages[k].classList.toggle('on', k === name);
+    });
+    tabs.forEach(function (b) { b.classList.toggle('on', b.dataset.page === name); });
+    if (push) { history.replaceState(null, '', '#' + name); }
+    window.scrollTo(0, 0);
+  }
+
+  tabs.forEach(function (b) {
+    b.addEventListener('click', function () { show(b.dataset.page, true); });
+  });
+
+  var hash = (location.hash || '').replace('#', '');
+  if (pages[hash]) { show(hash, false); }
+
+  var pills = document.querySelectorAll('.pill');
+  var cards = document.querySelectorAll('#page-scholars .card');
+  pills.forEach(function (p) {
+    p.addEventListener('click', function () {
+      pills.forEach(function (x) { x.classList.remove('on'); });
+      p.classList.add('on');
+      var t = p.dataset.tag;
+      cards.forEach(function (c) {
+        c.style.display = (t === 'all' || c.dataset.tag === t) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
