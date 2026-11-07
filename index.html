@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>HAC 学者、期刊与经典方法</title>
+<title>HAC 学者、期刊与方法文献</title>
 <style>
   :root{
     --navy:#003570; --navy-2:#0B4A8F; --red:#F03A17; --ink:#23323F;
@@ -106,6 +106,14 @@
   .mdesc{font-size:12.8px;line-height:1.66;color:#3B4A59;flex:1}
   .mlinks{margin-top:11px}
 
+  /* ---------- 经典文献 ---------- */
+  .empty{background:var(--card);border:1px dashed #C9D6E5;border-radius:10px;
+         padding:40px 32px;text-align:center;color:var(--muted);font-size:13px;
+         line-height:2;box-shadow:0 1px 2px rgba(0,53,112,.04)}
+  .empty b{display:block;color:var(--navy);font-size:16px;margin-bottom:8px;
+           letter-spacing:.02em}
+  .empty i{display:block;font-style:normal;font-size:12px;color:#8A99A9;margin-top:12px}
+
   /* ---------- 编辑表 ---------- */
   table{border-collapse:collapse;width:100%;background:#fff;font-size:12.5px}
   .tblwrap{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
@@ -126,13 +134,14 @@
 <body>
 <header>
   <div class="tag">HUMAN&ndash;AI COLLABORATION</div>
-  <h1>HAC 学者、期刊与经典方法</h1>
+  <h1>HAC 学者、期刊与方法文献</h1>
 </header>
 
 <div class="tabs">
   <button class="on" data-page="scholars">学者</button>
   <button data-page="journals">期刊与编辑</button>
   <button data-page="methods">经典方法</button>
+  <button data-page="refs">经典文献</button>
   <span class="right">整理于 2026-11</span>
 </div>
 
@@ -146,6 +155,7 @@
     页面一 学者        <div class="page on" id="page-scholars">
     页面二 期刊与编辑  <div class="page"    id="page-journals">
     页面三 经典方法    <div class="page"    id="page-methods">
+    页面四 经典文献    <div class="page"    id="page-refs">
 
   【尽量不要动的地方】
     <style> ... </style>   顶部的样式区，改错会整页变形
@@ -565,6 +575,19 @@
 
 </div>
 
+<!-- ============ 页面四：经典文献 ============ -->
+<div class="page" id="page-refs">
+
+  <h2 class="sec">经典文献<small>按「作者 · 年份 · 主题」整理原文与精读笔记，逐条补充</small></h2>
+
+  <div class="empty">
+    <b>内容整理中</b>
+    这个模块暂时留空，后续逐条加入：每条一句摘要，配原文或 PDF 链接。
+    <i>要加内容时，可参照「经典方法」页的卡片结构改写</i>
+  </div>
+
+</div>
+
 </div>
 
 <footer>整理于 2026-11 &middot; 供文献梳理与投稿参考</footer>
@@ -573,7 +596,8 @@
   var tabs = document.querySelectorAll('.tabs button');
   var pages = { scholars: document.getElementById('page-scholars'),
                 journals: document.getElementById('page-journals'),
-                methods: document.getElementById('page-methods') };
+                methods: document.getElementById('page-methods'),
+                refs: document.getElementById('page-refs') };
 
   function show(name, push) {
     Object.keys(pages).forEach(function (k) {
