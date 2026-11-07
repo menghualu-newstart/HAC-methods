@@ -138,8 +138,31 @@
 
 <div class="wrap">
 
+<!--
+  ============================================================
+  协作编辑说明（给要改这个文件的人看）
+
+  【可以改的地方】
+    页面一 学者        <div class="page on" id="page-scholars">
+    页面二 期刊与编辑  <div class="page"    id="page-journals">
+    页面三 经典方法    <div class="page"    id="page-methods">
+
+  【尽量不要动的地方】
+    <style> ... </style>   顶部的样式区，改错会整页变形
+    <script> ... </script> 末尾的切换逻辑，改错三个 tab 会点不动
+    <header> 与 <div class="tabs"> 页头和 tab 按钮
+
+  【多人协作约定】
+    一人负责一个 tab（学者 / 期刊 / 经典方法），各改各的区块，
+    改动的行不重叠，GitHub 能自动合并，不会冲突。
+    不要两个人同时改 <style> 区。
+  ============================================================
+-->
+
+
 <!-- ============ 页面一：学者 ============ -->
 <div class="page on" id="page-scholars">
+  <!-- 本区块只改 scholars 相关卡片，不要动上面的 style -->
   <div class="bar">
     <span class="hint">按主题看：</span>
     <button class="pill on" data-tag="all">全部</button>
@@ -272,6 +295,7 @@
 <!-- ============ 页面二：期刊与编辑 ============ -->
 <div class="page" id="page-journals">
 
+  <!-- 本区块只改期刊卡片与编辑表，不要动上面的 style -->
   <h2 class="sec">目标期刊</h2>
   <div class="jgrid">
 
@@ -498,6 +522,22 @@
 <div class="page" id="page-methods">
 
   <h2 class="sec">经典方法<small>建议顺序：先因果推理，再强化学习的数学原理，最后深度强化学习</small></h2>
+
+  <!--
+    加新卡片的做法：复制下面「卡片模板」整段，粘贴到 <div class="grid"> 与它对应的 </div> 之间，
+    改三处即可：mname（名称）、mfield（学科与作者）、mdesc（40 字以内介绍）、href（链接）。
+    类型：课程用 data-kind="课程"（青色条），教材/讲义用 data-kind="教材"（灰蓝条）。
+
+    卡片模板 开始
+    <div class="mcard" data-kind="教材">
+      <div class="mtop"><div class="mname">这里写名称</div><span class="mchip">教材</span></div>
+      <div class="mfield">这里写学科 · 作者</div>
+      <div class="mdesc">四十字以内的简短介绍，说清它是干什么的。</div>
+      <div class="mlinks"><a class="sch" href="pdf/文件名.pdf" target="_blank">PDF &#8599;</a></div>
+    </div>
+    卡片模板 结束
+  -->
+
   <div class="grid">
 
     <div class="mcard" data-kind="课程">
