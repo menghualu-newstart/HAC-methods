@@ -16,6 +16,7 @@
   <button data-page="journals">期刊与编辑</button>
   <button data-page="methods">经典方法</button>
   <button data-page="refs">经典文献</button>
+  <button data-page="cfps">专刊</button>
   <span class="right">整理于 2026-11</span>
 </div>
 
@@ -30,6 +31,7 @@
     页面二 期刊与编辑  <div class="page"    id="page-journals">
     页面三 经典方法    <div class="page"    id="page-methods">
     页面四 经典文献    <div class="page"    id="page-refs">
+    页面五 专刊与征稿  <div class="page"    id="page-cfps">
 
   【尽量不要动的地方】
     <style> ... </style>   顶部的样式区，改错会整页变形
@@ -481,25 +483,224 @@
 
   <h2 class="sec">经典文献<small>按「作者 · 年份 · 主题」整理原文与精读笔记，逐条补充</small></h2>
 
-  <div class="empty">
-    <b>内容整理中</b>
-    这个模块暂时留空，后续逐条加入：每条一句摘要，配原文或 PDF 链接。
-    <i>要加内容时，可参照「经典方法」页的卡片结构改写</i>
+  <div class="reflist">
+
+    <h3 style="font-size:12.5px;letter-spacing:.09em;color:#7A8798;font-weight:800;margin:26px 0 10px">当前在读</h3>
+
+
+    <div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Optimal Integration: Human, Machine, and Generative AI</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip" style="background:#B45309;color:#fff">在读</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24 &middot; FT50</span></div>
+      </div>
+      <div class="mfield">Zhong, Hongda ｜ <i>Management Science</i> ｜ 2026 ｜ 72(5): 3720&ndash;3739</div>
+      <div class="mdesc">用最优化的语言问「人与机器该怎么组合」：多层决策里，哪一层交给算法、哪一层留给人，以及生成式 AI 加入后最优分工的边界往哪儿移。</div>
+      <div class="mlinks"><a class="sch" href="https://pubsonline.informs.org/doi/10.1287/mnsc.2024.07401" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+    <div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Governing AI-enabled decision making: Delegation, autonomy, and control</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip" style="background:#B45309;color:#fff">在读</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24</span></div>
+      </div>
+      <div class="mfield">Srivastava, Abhishek ｜ <i>Production and Operations Management</i> ｜ 2026 ｜ online first</div>
+      <div class="mdesc">讨论 AI 进入决策后的「治理」：权力怎么在<b>委派、自主与监督</b>之间分配，组织用什么机制保证 AI 的判断仍在人的控制之内。</div>
+      <div class="mlinks"><a class="sch" href="https://journals.sagepub.com/doi/10.1177/10591478261473004" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+    <h3 style="font-size:12.5px;letter-spacing:.09em;color:#7A8798;font-weight:800;margin:26px 0 10px">议程与专刊</h3>
+
+<div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Introduction to the Special Issue on the Human&ndash;Algorithm Connection</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip" style="background:#003570;color:#fff">Special Issue</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24 &middot; FT50</span></div>
+      </div>
+      <div class="mfield">Caro, Felipe &middot; Colliard, Jean-Edouard &middot; Katok, Elena 等 7 人 ｜ <i>Management Science</i> ｜ 2026 ｜ 72(1): 1&ndash;13</div>
+      <div class="mdesc">专刊导读：把「人与算法的关系」单独立为一个研究议题，交代这期专刊的问题意识、收录范围与后续方向——可作为文献综述的切入框架。</div>
+      <div class="mlinks"><a class="sch" href="https://pubsonline.informs.org/doi/10.1287/mnsc.2023.intro.v72.n1" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+<div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Pathways for Design Research on Artificial Intelligence</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip" style="background:#003570;color:#fff">Special Issue</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24 &middot; FT50</span></div>
+      </div>
+      <div class="mfield">Abbasi, Ahmed &middot; Parsons, Jeffrey &middot; Pant, Gautam &middot; Sheng, Olivia R. Liu &middot; Sarker, Suprateek ｜ <i>Information Systems Research</i> ｜ 2024 ｜ 35(2): 441&ndash;459</div>
+      <div class="mdesc">专刊导读：从设计科学视角梳理研究 AI 的路径——AI 既是设计对象，也是设计工具，为「怎么做 AI 相关研究」提供方法论参照。</div>
+      <div class="mlinks"><a class="sch" href="https://pubsonline.informs.org/doi/10.1287/isre.2024.editorial.v35.n2" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+    <h3 style="font-size:12.5px;letter-spacing:.09em;color:#7A8798;font-weight:800;margin:26px 0 10px">研究文献</h3>
+
+<div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Roles of Artificial Intelligence in Collaboration with Humans: Automation, Augmentation, and the Future of Work</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip">任务与收益</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24 &middot; FT50</span></div>
+      </div>
+      <div class="mfield">F&uuml;gener, Andreas &middot; Walzner, Dominik D. &middot; Gupta, Alok ｜ <i>Management Science</i> ｜ 2026 ｜ 72(1): 538&ndash;557</div>
+      <div class="mdesc">区分「自动化」与「增强」两种 AI 角色，讨论人与 AI 如何分工、以及这种分工如何改变工作任务的收益结构。</div>
+      <div class="mlinks"><a class="sch" href="https://pubsonline.informs.org/doi/10.1287/mnsc.2024.05684" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+<div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">The Power of Disagreement: A Field Experiment to Investigate Human&ndash;Algorithm Collaboration in Loan Evaluations</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip">分歧与互补</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24 &middot; FT50</span></div>
+      </div>
+      <div class="mfield">Wang, Hongchang &middot; Zhang, Yingjie &middot; Lu, Tian ｜ <i>Management Science</i> ｜ 2025 ｜ mnsc.2022.03844</div>
+      <div class="mdesc">田野实验：当人与算法在贷款评估上出现分歧，决策结果会怎样——检验「分歧」本身是否具有价值，以及它在什么条件下从摩擦转为互补。</div>
+      <div class="mlinks"><a class="sch" href="https://pubsonline.informs.org/doi/10.1287/mnsc.2022.03844" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+<div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Complementarity in human-AI collaboration: concept, sources, and evidence</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip">互补机制</span><span class="mchip" style="background:#FBEBD8;color:#8A4E12">ABS4</span></div>
+      </div>
+      <div class="mfield">Hemmer, Patrick &middot; Schemmer, Max &middot; K&uuml;hl, Niklas &middot; V&ouml;ssing, Michael &middot; Satzger, Gerhard ｜ <i>European Journal of Information Systems</i> ｜ 2025 ｜ 1&ndash;24（在线）</div>
+      <div class="mdesc">系统梳理「人机互补」这一概念本身：互补从哪些来源产生、在什么条件下成立、又该如何测量——把分散的证据收拢成一个框架。</div>
+      <div class="mlinks"><a class="sch" href="https://www.tandfonline.com/doi/full/10.1080/0960085X.2025.2475962" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+<div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">1 + 1 &gt; 2? Information, Humans, and Machines</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip">互补与替代</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24 &middot; FT50</span></div>
+      </div>
+      <div class="mfield">Lu, Tian &middot; Zhang, Yingjie ｜ <i>Information Systems Research</i> ｜ 2025 ｜ 36(1): 394&ndash;418</div>
+      <div class="mdesc">人与机器在信息处理上的互补与替代：什么条件下组合起来的效果真能大于各自单干——为你稿子里的「人机互补」提供基准证据。</div>
+      <div class="mlinks"><a class="sch" href="https://pubsonline.informs.org/doi/10.1287/isre.2023.0305" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+<div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">A cognitive approach to human-AI complementarity in dynamic decision-making</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip">认知机制</span><span class="mchip" style="background:#C2410C;color:#fff" title="JCI 3.76｜IF(5年) 26.1｜SCI 升级版 心理学 1 区｜SSCI Q1｜IF 22.0｜HHU A-类">Nature 子刊</span></div>
+      </div>
+      <div class="mfield">Gonzalez, Cleotilde &middot; Heidari, Hoda ｜ <i>Nature Reviews Psychology</i> ｜ 2025</div>
+      <div class="mdesc">从认知科学角度解释动态决策中的人机互补：人如何在反馈中形成判断，AI 又该在哪个环节补位。</div>
+      <div class="mlinks"><a class="sch" href="https://www.nature.com/articles/s44159-025-00499-x" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+<div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Cognitive Challenges in Human&ndash;Artificial Intelligence Collaboration: Investigating the Path Toward Productive Delegation</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip">委派与认知</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24 &middot; FT50</span></div>
+      </div>
+      <div class="mfield">F&uuml;gener, Andreas &middot; Grahl, J&ouml;rn &middot; Gupta, Alok &middot; Ketter, Wolfgang ｜ <i>Information Systems Research</i> ｜ 2022 ｜ 33(2): 678&ndash;696</div>
+      <div class="mdesc">人机协作为何常常达不到预期：识别委派过程中的认知障碍（如对 AI 能力的误判），并给出走向「有效委派」的路径。</div>
+      <div class="mlinks"><a class="sch" href="https://pubsonline.informs.org/doi/10.1287/isre.2021.1079" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+<div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Will Humans-in-the-Loop Become Borgs? Merits and Pitfalls of Working with AI</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip">互补性</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24 &middot; FT50</span></div>
+      </div>
+      <div class="mfield">F&uuml;gener, Andreas &middot; Grahl, J&ouml;rn &middot; Gupta, Alok 等 ｜ <i>MIS Quarterly</i> ｜ 2021 ｜ 45(3): 1527&ndash;1556</div>
+      <div class="mdesc">以「人机合体（borg）」为喻，讨论把人留在环中的利弊：与 AI 合作可能提升产出，也可能让人逐步放弃独立判断。</div>
+      <div class="mlinks"><a class="sch" href="https://misq.org/will-humans-in-the-loop-become-borgs-merits-and-pitfalls-of-working-with-ai.html" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+<div class="mcard" data-kind="文献" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">The Next Generation of Research on IS Use: A Theoretical Framework of Delegation to and from Agentic IS Artifacts</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip">委托与代理</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24 &middot; FT50</span></div>
+      </div>
+      <div class="mfield">Baird, Aaron &middot; Maruping, Likoebe M. ｜ <i>MIS Quarterly</i> ｜ 2021 ｜ 45(1): 315&ndash;341</div>
+      <div class="mdesc">提出「向智能体委派 / 从智能体获得委派」的理论框架，并把 Appraisal&ndash;Distribution&ndash;Coordination 三个机制串成闭环——本页学者谱系的源头文献。</div>
+      <div class="mlinks"><a class="sch" href="https://misq.org/the-next-generation-of-research-on-is-use-a-theoretical-framework-of-delegation-to-and-from-agentic-is-artifacts.html" target="_blank">原文 &#8599;</a></div>
+    </div>
+
+  
   </div>
 
+</div>
+
+<!-- ============ 页面五：专刊与征稿 ============ -->
+<div class="page" id="page-cfps">
+
+  <h2 class="sec">专刊与征稿<small>按截稿日期排序，只收与「人机协同 / AI 决策」直接相关的</small></h2>
+
+  <div class="reflist">
+
+    <h3 style="font-size:12.5px;letter-spacing:.09em;color:#7A8798;font-weight:800;margin:26px 0 10px">正在征稿</h3>
+
+    <div class="mcard" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Decisions in the Agentic Era: Toward Agent-Native Decision Science</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip" style="background:#EEF1F5;color:#5A6B7C">DS</span><span class="mchip" style="background:#FBEBD8;color:#8A4E12">ABS3</span><span class="mchip" style="background:#B45309;color:#fff">截稿 2027-01-15</span></div>
+      </div>
+      <div class="mfield">Track A 截稿 2027-01-15 ｜ Track B 截稿 2027-03-15 ｜ 客座编辑：Yingjie Zhang（北大）、Shunyuan Zhang（哈佛）、Tianshu Sun（长江商学院）、Liangfei Qiu（佛罗里达大学）、Nagesh N. Murthy（俄勒冈大学）</div>
+      <div class="mdesc">当决策者越来越多是 AI 代理——会主动发起多步流程、调用工具、与其他代理协同——决策科学该怎么改写？这期要的是「代理原生」的决策理论，不是把旧模型加个 AI 变量。</div>
+      <div class="mlinks"><a class="sch" href="https://onlinelibrary.wiley.com/page/journal/15405915/homepage/call-for-papers/agentic-era-decisions" target="_blank">征稿页 &#8599;</a></div>
+    </div>
+        <div class="mcard" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Agentic Organizations: Designing, Governing, and Managing AI Agents</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip" style="background:#EEF1F5;color:#5A6B7C">JMIS</span><span class="mchip" style="background:#C0392B;color:#fff">FT50</span><span class="mchip" style="background:#B45309;color:#fff">截稿 2027-02-01</span></div>
+      </div>
+      <div class="mfield">摘要（可选）2026-12-15 ｜ 全文 2027-02-01 ｜ 客座编辑：Martin Adam（哥廷根）、Aaron Baird（Colorado State）、Mari-Klara Stein（塔林理工）、Alexander Benlian（TU Darmstadt）</div>
+      <div class="mdesc">AI 从「辅助个人」走向「承担组织行动」：组织愿意把什么交给代理、自主性如何设边界、失败怎样在扩散前被截住，以及责任、可争辩性、韧性与人的权威怎么设计进核心系统。</div>
+      <div class="mlinks"><a class="sch" href="https://www.jmis-web.org/" target="_blank">征稿页 &#8599;</a></div>
+    </div>
+<div class="mcard" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">The evolving human&ndash;AI relationship: profiles, trajectories, reciprocal dynamics, and outcomes</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip" style="background:#EEF1F5;color:#5A6B7C">BIT</span><span class="mchip" style="background:#FBEBD8;color:#8A4E12">ABS2</span><span class="mchip" style="background:#B45309;color:#fff">截稿 2027-02-28</span></div>
+      </div>
+      <div class="mfield">Behaviour &amp; Information Technology ｜ 客座编辑：Vasileios Stavropoulos（RMIT）、Nafsika Antoniadou（Ioannina）、Benjamin Tag（UNSW）、Taylor Brown（RMIT）等</div>
+      <div class="mdesc">人机关系不是一次性「采纳」，而是长期演化：同一种使用强度可能对应工具、导师、协作伙伴甚至对手等不同角色；互动会随时间形成轨迹，人与 AI 彼此塑造、互为因果。</div>
+      <div class="mlinks"><a class="sch" href="https://think.taylorandfrancis.com/special_issues/the-evolving-human-ai-relationship-profiles-trajectories-reciprocal-dynamics-and-outcomes/" target="_blank">征稿页 &#8599;</a></div>
+    </div>
+<div class="mcard" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Accountability in AI-Enabled Decision Support: Delegation, Oversight, and Decision Quality</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip" style="background:#EEF1F5;color:#5A6B7C">DSS</span><span class="mchip" style="background:#FBEBD8;color:#8A4E12">ABS3</span><span class="mchip" style="background:#B45309;color:#fff">截稿 2027-09-30</span></div>
+      </div>
+      <div class="mfield">客座编辑：Xin (Robert) Luo（香港浸会大学）、Tingru Cui（墨尔本大学）、Kun Chen（深圳大学）</div>
+      <div class="mdesc">AI 参与决策支持之后的责任归属：任务怎么委派给智能体、人怎么监督、以及「决策质量」该如何界定与衡量。</div>
+      <div class="mlinks"><a class="sch" href="https://www.sciencedirect.com/special-issue/338112/accountability-in-ai-enabled-decision-support-delegation-oversight-and-decision-quality" target="_blank">征稿页 &#8599;</a></div>
+    </div>
+
+    <h3 style="font-size:12.5px;letter-spacing:.09em;color:#7A8798;font-weight:800;margin:26px 0 10px">已截止 · 继续追踪</h3>
+
+<div class="mcard" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">Bridging the Gap Between Artificial Intelligence and Risk Analysis: Human&ndash;AI Teaming Perspectives</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip" style="background:#EEF1F5;color:#5A6B7C">Risk Analysis</span><span class="mchip" style="background:#FBEBD8;color:#8A4E12">ABS4</span><span class="mchip" style="background:#7A8798;color:#fff">已截止 2026-10-31</span></div>
+      </div>
+      <div class="mfield">首轮意见 2027-01-31 ｜ 专刊定稿 2027 年夏 ｜ 客座编辑：Mario P. Brito（Southampton）、Tony Cox（Cox Associates / Colorado）等</div>
+      <div class="mdesc">AI 与生成式 AI 嵌入风险分析工作流之后：人与 AI 如何组成团队、风险描述与量化怎么做、涌现出的不确定性与不透明性如何治理。</div>
+      <div class="mlinks"><a class="sch" href="https://onlinelibrary.wiley.com/page/journal/15396924/homepage/call-for-papers/human%E2%80%93ai-perspectives" target="_blank">征稿页 &#8599;</a></div>
+    </div>
+    <div class="mcard" style="margin-bottom:12px">
+      <div class="mtop">
+        <div class="mname">ISR Special Issue on Compassionate AI</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><span class="mchip" style="background:#EEF1F5;color:#5A6B7C">ISR</span><span class="mchip" style="background:#C0392B;color:#fff">UTD24 &middot; FT50</span><span class="mchip" style="background:#7A8798;color:#fff">已截止 2026-01-25</span></div>
+      </div>
+      <div class="mfield">客座编辑：Rajiv Kohli（William &amp; Mary）、Meng Li（Houston）、Ting Li（Erasmus）、Paul A. Pavlou（Miami）</div>
+      <div class="mdesc">把伦理、文化敏感性与情绪智能嵌进 AI 的核心设计——AI 不能只追求效率与准确，还要「有同情心」地参与人的判断与照护。</div>
+      <div class="mlinks"><a class="sch" href="https://connect.informs.org/discussion/isr-special-issue-on-compassionate-ai" target="_blank">征稿页 &#8599;</a></div>
+    </div>
+
+
+  
+  </div>
 </div>
 
 </div>
 
 <!-- 【每次更新后请改这一行的时间戳】 -->
-<footer>整理于 2026-11 &middot; 最后更新 <b id="stamp">2026-11-08 21:57</b> &middot; 供文献梳理与投稿参考</footer>
+<footer>整理于 2026-11 &middot; 最后更新 <b id="stamp">2026-11-10 19:05</b> &middot; 供文献梳理与投稿参考</footer>
 
 <script>
   var tabs = document.querySelectorAll('.tabs button');
   var pages = { scholars: document.getElementById('page-scholars'),
                 journals: document.getElementById('page-journals'),
                 methods: document.getElementById('page-methods'),
-                refs: document.getElementById('page-refs') };
+                refs: document.getElementById('page-refs'),
+                cfps: document.getElementById('page-cfps') };
 
   function show(name, push) {
     Object.keys(pages).forEach(function (k) {
