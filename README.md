@@ -1,7 +1,7 @@
 # HAC 学者、期刊与方法文献
 
 > **网页版（点开就是渲染好的页面）**
-> ## 👉 https://menghualu-newstart.github.io/HAC-methods/
+> ## 👉 https://hacdm.github.io/HAC-methods/
 >
 > 打不开时把上面的地址复制到浏览器地址栏，不要在这里点代码文件。
 
@@ -9,12 +9,12 @@
 
 | 页面 | 链接 |
 |---|---|
-| 学者 | https://menghualu-newstart.github.io/HAC-methods/ |
-| 期刊与编辑 | https://menghualu-newstart.github.io/HAC-methods/#journals |
-| 经典方法（含课程配套资料） | https://menghualu-newstart.github.io/HAC-methods/#methods |
-| 经典文献 | https://menghualu-newstart.github.io/HAC-methods/#refs |
-| 专刊与征稿 | https://menghualu-newstart.github.io/HAC-methods/#cfps |
-| 伯克利 DRL 课程材料（子页面） | https://menghualu-newstart.github.io/HAC-methods/methods/drl-berkeley.html |
+| 学者 | https://hacdm.github.io/HAC-methods/ |
+| 期刊与编辑 | https://hacdm.github.io/HAC-methods/#journals |
+| 经典方法（含课程配套资料） | https://hacdm.github.io/HAC-methods/#methods |
+| 经典文献 | https://hacdm.github.io/HAC-methods/#refs |
+| 专刊与征稿 | https://hacdm.github.io/HAC-methods/#cfps |
+| 伯克利 DRL 课程材料（子页面） | https://hacdm.github.io/HAC-methods/methods/drl-berkeley.html |
 
 ## 文件说明
 
@@ -32,7 +32,7 @@
 1. 装 **GitHub Desktop**：https://desktop.github.com/
 2. 打开后先 **Sign in to GitHub.com**，用你自己的 GitHub 账号登录
    （**不登录的话，clone 和 push 都会失败**）
-3. **File → Clone repository** → 选 `menghualu-newstart/HAC-methods`
+3. **File → Clone repository** → 选 `HACDM/HAC-methods`
 4. 本地路径选 **F 盘（仅作示例）**，例如 `F:\文档\GitHub\HAC-methods`
 5. 装 **VS Code** → **File → Open Folder** → 选这个目录
 
@@ -98,7 +98,7 @@
 ### 7. 等上线，再验证
 
 1. 等 **30–60 秒**（GitHub Pages 要重新构建）
-2. 打开 https://menghualu-newstart.github.io/HAC-methods/
+2. 打开 https://hacdm.github.io/HAC-methods/
 3. 按 **Ctrl+F5** 强制刷新（不加这个可能看到旧页面）
 4. 切到你改的那个 tab，确认内容对了
 
