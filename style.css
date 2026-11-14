@@ -137,3 +137,22 @@
   .crumb{font-size:12.5px;margin:18px 0 -6px}
   .crumb a{color:var(--red);text-decoration:none;font-weight:700}
   .crumb a:hover{text-decoration:underline}
+
+/* ===== 期刊与编辑（2026-11-14 同步）：投稿规则表 + 逐人优先级表 ===== */
+#page-journals .audit-table td[rowspan] {vertical-align:middle}
+#page-journals .audit-table-wrap {overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+#page-journals .audit-table {min-width:1080px;table-layout:fixed;line-height:1.65}
+#page-journals .audit-table th {position:static}
+#page-journals .audit-table td {overflow-wrap:anywhere}
+#page-journals .audit-table td:first-child {white-space:normal}
+#page-journals .audit-table .fit {color:#C0392B;white-space:nowrap;font-size:15px;letter-spacing:1px}
+#page-journals .audit-table .fit-empty {color:#C3CCD7}
+#page-journals .audit-table .detail {display:block;font-size:11.5px;color:#65788C;margin-top:5px;font-weight:400}
+#page-journals .audit-table .review-status {display:block;font-size:11px;color:#65788C;margin-top:5px}
+#page-journals .audit-table .uncertain .review-status {color:#9A5A14}
+#page-journals .audit-table .added {font:600 10px Arial;color:#246E66;background:#E7F3EF;padding:2px 5px;border-radius:3px;display:inline-block;margin-top:5px}
+#page-journals .audit-table a,#page-journals .route-table a,#page-journals .check-note a {color:#B83B22;text-decoration:none}
+#page-journals .audit-table a:hover,#page-journals .route-table a:hover,#page-journals .check-note a:hover {text-decoration:underline}
+#page-journals .audit-table .evidence a {display:block;font-size:11px;margin-bottom:6px}
+#page-journals .route-table {min-width:760px;font-size:12px;line-height:1.75}
+#page-journals .route-table td:first-child {width:8%}
